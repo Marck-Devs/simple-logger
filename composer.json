@@ -1,0 +1,18 @@
+{
+    "name": "marck-devs/simple-logger",
+    "description": "Simple php logger library",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MarckDevs\\SimpleLogger\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marck C. Guzmán",
+            "email": "marck@marck-devs.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,1 @@
+# Simple logger for php

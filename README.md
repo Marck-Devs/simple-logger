@@ -67,7 +67,8 @@ There are same reserved keywords:
 - {class} - the class that call logger
 - {function} - the function that call logger
 - {line} - the line from has been called
-- {lv} - the log level
+- {lvl} - the log level
+- {msg} - the log message
 
 If want a personal format for logger, you can create a class that implements **LogFormatter**.
 
@@ -78,3 +79,59 @@ The _SimpleLogger_ has two method to set the logs file and the errors file:
     SimpleLogger::set_error_file($path_to_file);
 ```
 With this the default output stream will change to the files.
+
+## Make custom formatter
+The log formatter set the way to print the log line into the main output stream. To create custom, you will need to implement the `LogFormatter` interface.
+```php
+    class MyFormatter implements \MarckDevs\SimpleLogger\Interfaces\LogFormatter{
+        public function format($string, $data = []){
+            $my_format = "{date}- {lv}- {msg}";
+            // generate the array with the necessaries keys
+            $arr = \MarkDevs\SimpleLogger\SimpleFormatter::gen_arr($string, $data);
+            // format the string
+            return \MarkDevs\SimpleLogger\SimpleFormatter::set_data($string, $arr);
+        }
+    }
+```
+
+When you have your custon formatter you can set to the logger via static method or constructor:
+```php
+\MarckDevs\SimpleLogger\SimpleLogger::set_log_format(new MyFormatter());
+// or
+$log = new \MarckDevs\SimpleLogger\SimpleLogger(
+    "name", 
+    \MarckDevs\SimpleLogger\LogLevels::WARN,
+    new \MarckDevs\SimpleLogger\SimpleDateFormatter(),
+    new MyFormatter());
+
+```
+**In both case the formatter is set globally.**
+
+## Formating the date
+The default format for date is the Spanish format: `d-m-Y H:i:s`, but this can be 
+change to custom format creatin an implementation from `DateFormatter` interface.
+
+```php
+    class MyDateFormatter implements\MarckDevs\SimpleLogger\Interfaces\DateFormatter{
+
+        public function get_date($date /*DateTime object*/): String {
+            // custom format
+            $format = "Y-m-d H:i:s"; // php format
+            return $date->format($format);
+        }
+    }
+```
+To set to the logger, like before, you can set in the constructor or with the static method:
+```php
+    \MarckDevs\SimpleLogger\SimpleLogger::set_date_format(new MyDateFormatter());
+// or
+$log = new \MarckDevs\SimpleLogger\SimpleLogger(
+    "name", 
+    \MarckDevs\SimpleLogger\LogLevels::WARN,
+    new MyDateFormatter());
+```
+
+## File paths
+When visualize the file path whit the `{file}` option, dont show full path, only the 
+file name and same parent dir. The number of parent can be change by setting in the 
+static method `set_dir_level(int)`. If is set 2 levels, only will show 2 dir parents.

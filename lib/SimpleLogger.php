@@ -3,8 +3,16 @@
 namespace MarckDevs\SimpleLogger;
 
 use DateTime;
+use MarckDevs\SimpleLogger\Interfaces\DateFormatter;
+use MarckDevs\SimpleLogger\Interfaces\LogFormatter;
 use MarckDevs\SimpleLogger\LogLevels;
 
+/**
+ * Logger class
+ * @version 1.0.0
+ * @author Marck Devs
+ * @see https://github.com/marck-dev/simple-logger
+ */
 class SimpleLogger
 {
     private $date_format;
@@ -49,7 +57,14 @@ class SimpleLogger
     {
         self::$log_format = $log_format;
     }
-
+    /**
+     * Constructor
+     * @param string $name the logger name
+     * @param int $log_level the log level
+     * @param DateFormatter $date_format the date formatter to use
+     * @param LogFormatter $log_format the log format to use
+     *
+     */
     public function __construct($name = "app", $log_level = LogLevels::WARN, $date_format = false, $log_format = false)
     {
         $this->name = $name;
@@ -128,6 +143,29 @@ class SimpleLogger
         if (!LogLevels::is_log_level(LogLevels::LOG, self::$log_level))
             return;
         $line = $this->log_format->format($msg, $this->gen_data($data, "LOG"));
+        $line = self::add_br($line);
+        if (self::check_if_file()) {
+            if (self::$log_file != false) {
+                $this->save_log($line);
+                return;
+            }
+        }
+        echo $line;
+    }
+
+     /**
+     * Make a info message. It can be formatter with {key} sintax.
+     * In the $data param can pass the array whit the keys and values
+     * @example string  info("hi {second}", ["second" => "world"]) -> "Hi world"
+     * @param string $msg  the message
+     * @param array $data the dictionary to format the string
+     * @return void
+     */
+    public function info($msg, $data = []): void
+    {
+        if (!LogLevels::is_log_level(LogLevels::INFO, self::$log_level))
+            return;
+        $line = $this->log_format->format($msg, $this->gen_data($data, "INFO"));
         $line = self::add_br($line);
         if (self::check_if_file()) {
             if (self::$log_file != false) {

@@ -3,6 +3,7 @@
     "description": "Simple php logger library",
     "type": "library",
     "license": "MIT",
+    "keywords": ["log", "logger", "logging"],
     "autoload": {
         "psr-4": {
             "MarckDevs\\SimpleLogger\\": "lib/"

@@ -244,7 +244,7 @@ class SimpleLogger
         $line =  self::$log_format->format($msg, $this->gen_data($data, "ERROR"));
         $line = self::add_br($line);
         if (self::check_if_file()) {
-            if (self::$log_file != false) {
+            if (self::$error_file != false) {
                 $this->save_error($line);
                 return;
             }
@@ -267,7 +267,7 @@ class SimpleLogger
         $line =  self::$log_format->format($msg, $this->gen_data($data, "CRITICAL"));
         $line = self::add_br($line);
         if (self::check_if_file()) {
-            if (self::$log_file != false) {
+            if (self::$error_file != false) {
                 $this->save_error($line);
                 return;
             }

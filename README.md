@@ -97,13 +97,6 @@ The log formatter set the way to print the log line into the main output stream.
 When you have your custon formatter you can set to the logger via static method or constructor:
 ```php
 \MarckDevs\SimpleLogger\SimpleLogger::set_log_format(new MyFormatter());
-// or
-$log = new \MarckDevs\SimpleLogger\SimpleLogger(
-    "name", 
-    \MarckDevs\SimpleLogger\LogLevels::WARN,
-    new \MarckDevs\SimpleLogger\SimpleDateFormatter(),
-    new MyFormatter());
-
 ```
 **In both case the formatter is set globally.**
 
@@ -124,13 +117,13 @@ change to custom format creatin an implementation from `DateFormatter` interface
 To set to the logger, like before, you can set in the constructor or with the static method:
 ```php
     \MarckDevs\SimpleLogger\SimpleLogger::set_date_format(new MyDateFormatter());
-// or
-$log = new \MarckDevs\SimpleLogger\SimpleLogger(
-    "name", 
-    \MarckDevs\SimpleLogger\LogLevels::WARN,
-    new MyDateFormatter());
 ```
-
+## Set Log level
+To set the log level for the logger we have the static method `set_log_level(int)`
+It need a **LogLevel** constant.
+```php
+\MarckDevs\SimpleLoggerSimpleLogger::set_log_level(\MarckDevs\SimpleLogger\LogLevels::INFO)
+```
 ## File paths
 When visualize the file path whit the `{file}` option, dont show full path, only the 
 file name and same parent dir. The number of parent can be change by setting in the 

@@ -5,13 +5,14 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "MarckDevs\\SimpleLogger\\": "src/"
+            "MarckDevs\\SimpleLogger\\": "lib/"
         }
     },
     "authors": [
         {
             "name": "Marck C. Guzmán",
-            "email": "marck@marck-devs.com"
+            "email": "marck@marck-devs.com",
+            "homepage": "https://marck-devs.com"
         }
     ],
     "require": {}

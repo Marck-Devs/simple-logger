@@ -15,5 +15,7 @@
             "homepage": "https://marck-devs.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.3.0"
+    }
 }

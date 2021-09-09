@@ -1,9 +1,8 @@
 <?php
 namespace MarckDevs\SimpleLogger;
 
-use MarckDevs\SimpleLogger\Interfaces\LogFormatter;
 
-class SimpleFormatter implements LogFormatter{
+class SimpleFormatter implements \MarckDevs\SimpleLogger\Interfaces\LogFormatter{
     public function format($string, $data = []): string
     {
         $format = "{date} - {user} | {name} - [{lvl}] @ {file}:{line}  {class}->{function} :: {msg}";
@@ -43,8 +42,8 @@ class SimpleFormatter implements LogFormatter{
 
     private static function gen_file_path($file){
         $slices = explode(DIRECTORY_SEPARATOR, $file);
-        if(count($slices) > SimpleLogger::get_dir_level()){
-            $slice_file = array_slice($slices, -1 * SimpleLogger::get_dir_level(), SimpleLogger::get_dir_level(), false);
+        if(count($slices) > \MarckDevs\SimpleLogger\SimpleLogger::get_dir_level()){
+            $slice_file = array_slice($slices, -1 *  \MarckDevs\SimpleLogger\SimpleLogger::get_dir_level(),  \MarckDevs\SimpleLogger\SimpleLogger::get_dir_level(), false);
         }else{
             $slice_file = $slices;
         }

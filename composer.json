@@ -9,6 +9,9 @@
             "MarckDevs\\SimpleLogger\\": "lib/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {"MarckDevs\\SimpleLogger\\": "lib/"}
+    },
     "authors": [
         {
             "name": "Marck C. Guzmán",

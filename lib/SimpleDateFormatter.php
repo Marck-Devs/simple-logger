@@ -1,9 +1,8 @@
 <?php
 namespace MarckDevs\SimpleLogger;
 
-use MarckDevs\SimpleLogger\Interfaces\DateFormatter;
 
-class SimpleDateFormatter implements DateFormatter{
+class SimpleDateFormatter implements  \MarckDevs\SimpleLogger\Interfaces\DateFormatter{
 
     /**
      * @param DateTime $date The date

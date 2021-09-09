@@ -3,9 +3,7 @@
 namespace MarckDevs\SimpleLogger;
 
 use DateTime;
-use MarckDevs\SimpleLogger\Interfaces\DateFormatter;
-use MarckDevs\SimpleLogger\Interfaces\LogFormatter;
-use MarckDevs\SimpleLogger\LogLevels;
+
 
 /**
  * Logger class
@@ -65,24 +63,24 @@ class SimpleLogger
      * Constructor
      * @param string $name the logger name
      * @param int $log_level the log level
-     * @param DateFormatter $date_format the date formatter to use
-     * @param LogFormatter $log_format the log format to use
+     * @param \MarckDevs\SimpleLogger\DateFormatter $date_format the date formatter to use
+     * @param \MarckDevs\SimpleLogger\LogFormatter $log_format the log format to use
      *
      */
-    public function __construct($name = "app", $log_level = LogLevels::WARN, $date_format = false, $log_format = false)
+    public function __construct($name = "app", $log_level = \MarckDevs\SimpleLogger\LogLevels::WARN, $date_format = false, $log_format = false)
     {
         $this->name = $name;
         if (!isset(self::$date_format) && $date_format != false) {
             self::$date_format = $date_format;
         } else {
             if(!isset(self::$date_format))
-                self::$date_format = new SimpleDateFormatter();
+                self::$date_format = new \MarckDevs\SimpleLogger\SimpleDateFormatter();
         }
         if (!isset(self::$log_format) && $log_format != false) {
             self::$log_format= $log_format;
         } else {
             if(!isset(self::$log_format))
-                self::$log_format = new SimpleFormatter();
+                self::$log_format = new \MarckDevs\SimpleLogger\SimpleFormatter();
         }
         if(!isset(self::$log_level))
             self::$log_level = $log_level;
@@ -116,7 +114,7 @@ class SimpleLogger
      */
     public static function add_br($line)
     {
-        if (!CommonsUtils::ends_with($line, "\n")) {
+        if (!\MarckDevs\SimpleLogger\CommonsUtils::ends_with($line, "\n")) {
             return $line . "\n";
         } else {
             return $line;
@@ -147,7 +145,7 @@ class SimpleLogger
      */
     public function log($msg, $data = []): void
     {
-        if (!LogLevels::is_log_level(LogLevels::LOG, self::$log_level))
+        if (!\MarckDevs\SimpleLogger\LogLevels::is_log_level(\MarckDevs\SimpleLogger\LogLevels::LOG, self::$log_level))
             return;
         $line =  self::$log_format->format($msg, $this->gen_data($data, "LOG"));
         $line = self::add_br($line);
@@ -170,7 +168,7 @@ class SimpleLogger
      */
     public function info($msg, $data = []): void
     {
-        if (!LogLevels::is_log_level(LogLevels::INFO, self::$log_level))
+        if (!\MarckDevs\SimpleLogger\LogLevels::is_log_level(\MarckDevs\SimpleLogger\LogLevels::INFO, self::$log_level))
             return;
         $line =  self::$log_format->format($msg, $this->gen_data($data, "INFO"));
         $line = self::add_br($line);
@@ -193,7 +191,7 @@ class SimpleLogger
      */
     public function debug($msg, $data = []): void
     {
-        if (!LogLevels::is_log_level(LogLevels::DEBUG, self::$log_level))
+        if (!\MarckDevs\SimpleLogger\LogLevels::is_log_level(\MarckDevs\SimpleLogger\LogLevels::DEBUG, self::$log_level))
             return;
         $line =  self::$log_format->format($msg, $this->gen_data($data, "DEBUG"));
         $line = self::add_br($line);
@@ -216,7 +214,7 @@ class SimpleLogger
      */
     public function warn($msg, $data = []): void
     {
-        if (!LogLevels::is_log_level(LogLevels::WARN, self::$log_level))
+        if (!\MarckDevs\SimpleLogger\LogLevels::is_log_level(\MarckDevs\SimpleLogger\LogLevels::WARN, self::$log_level))
             return;
         $line =  self::$log_format->format($msg, $this->gen_data($data, "WARN"));
         $line = self::add_br($line);
@@ -239,7 +237,7 @@ class SimpleLogger
      */
     public function error($msg, $data = []): void
     {
-        if (!LogLevels::is_log_level(LogLevels::ERROR, self::$log_level))
+        if (!\MarckDevs\SimpleLogger\LogLevels::is_log_level(\MarckDevs\SimpleLogger\LogLevels::ERROR, self::$log_level))
             return;
         $line =  self::$log_format->format($msg, $this->gen_data($data, "ERROR"));
         $line = self::add_br($line);
@@ -262,7 +260,7 @@ class SimpleLogger
      */
     public function critical($msg, $data = []): void
     {
-        if (!LogLevels::is_log_level(LogLevels::CRITICAL, self::$log_level))
+        if (!\MarckDevs\SimpleLogger\LogLevels::is_log_level(\MarckDevs\SimpleLogger\LogLevels::CRITICAL, self::$log_level))
             return;
         $line =  self::$log_format->format($msg, $this->gen_data($data, "CRITICAL"));
         $line = self::add_br($line);

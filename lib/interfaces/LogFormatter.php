@@ -2,5 +2,5 @@
 namespace MarckDevs\SimpleLogger\Interfaces;
 
 interface LogFormatter{
-    public function format($string, $data = false) : String;
+    public function format($string, $data = false);
 }

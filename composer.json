@@ -7,12 +7,14 @@
     "autoload": {
         "psr-4": {
             "MarckDevs\\SimpleLogger\\": "lib/",
-            "MarckDevs\\SimpleLogger\\Interfaces\\": "lib/interfaces/"
+            "MarckDevs\\SimpleLogger\\Interfaces\\": "lib/interfaces/",
+            "MarckDevs\\SimpleLogger\\Utils\\": "lib/utils/"
         }
     },
     "autoload-dev": {
         "psr-4": {"MarckDevs\\SimpleLogger\\": "lib/",
-            "MarckDevs\\SimpleLogger\\Interfaces\\": "lib/interfaces/"
+            "MarckDevs\\SimpleLogger\\Interfaces\\": "lib/interfaces/",
+            "MarckDevs\\SimpleLogger\\Utils\\": "lib/utils/"
         }
     },
     "authors": [

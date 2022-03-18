@@ -2,6 +2,7 @@
 namespace MarckDevs\SimpleLogger;
 
 class LogLevels{
+    public  const VERBOSE = 0xd00;
     public  const DEBUG = 0xd01;
     public  const INFO = 0xd02;
     public  const LOG = 0xd03;
@@ -29,6 +30,9 @@ class LogLevels{
         $lvl = strtoupper($level);
         $lvl_int = 0;
         switch ($lvl){
+            case "VERBOSE":
+                $lvl_int = self::VERBOSE;
+                break;
             case "DEBUG":
                 $lvl_int = self::DEBUG;
                 break;

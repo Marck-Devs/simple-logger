@@ -1,5 +1,5 @@
 <?php
-namespace MarckDevs\SimpleLogger;
+namespace MarckDevs\SimpleLogger\Utils;
 class CommonsUtils{
     public static function starts_with( $haystack, $needle ) {
         $length = strlen( $needle );
